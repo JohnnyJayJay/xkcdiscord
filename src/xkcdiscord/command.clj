@@ -1,5 +1,7 @@
 (ns xkcdiscord.command
-  (:require [xkcdiscord.xkcd :as xkcd]))
+  (:require [xkcdiscord.xkcd :as xkcd]
+            [clojure.string :as string])
+  (:import (java.util.concurrent Executors ScheduledExecutorService TimeUnit)))
 
 (def plain-option
   {:name "plain"
@@ -21,7 +23,33 @@
     {:name "rand"
      :description "Show a random xkcd"
      :type 1
-     :options [plain-option]}]})
+     :options [plain-option]}
+    {:name "search"
+     :description "Search for xkcd comics by title"
+     :type 1
+     :options
+     [{:name "query"
+       :description "The query to look for"
+       :type 3}]}]})
+
+(def archive
+  (atom []))
+
+(def ^ScheduledExecutorService scheduler (Executors/newSingleThreadScheduledExecutor))
+
+(defn populate-archive! []
+  (reset! archive (xkcd/read-archive)))
+
+(defn update-archive! []
+  (let [{[{:keys [title uri]}] :entries} (xkcd/read-rss)
+        latest-num (xkcd/xkcd-url->num uri)]
+    (swap! archive
+           (fn [archive]
+             (cond-> archive
+               (-> archive last first (not= latest-num)) (conj [latest-num title]))))))
+
+(defn start-rss-updates! [period]
+  (.scheduleAtFixedRate scheduler ^Runnable update-archive! period period TimeUnit/MINUTES))
 
 (defn command-path [{{:keys [name options]} :data}]
   (into
@@ -63,3 +91,17 @@
   (let [{:keys [plain]} (command-options command 1)
         comic (xkcd/random)]
     (xkcd-response comic plain)))
+
+(defmethod handle-command ["xkcd" "search"]
+  [command]
+  (let [{:keys [query]} (command-options command 1)
+        _ (println (count @archive))
+        results (->> (xkcd/search @archive query)
+                     (map (fn [[num title]] (str \` num "` - " \" title \")))
+                     (take 10))]
+    {:type 4
+     :data {:embeds [{:title "Search results"
+                      :description (if (seq results)
+                                     (->> results (string/join "\n") (format "Results for \"%s\":\n\n%s" query))
+                                     (str "No results found for \"" query "\" :("))
+                      :color (if (seq results) 0x3BA55D 0xED4245)}]}}))

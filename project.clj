@@ -9,8 +9,11 @@
                  [ring/ring-json "0.5.1"]
                  [http-kit "2.5.3"]
                  [com.github.johnnyjayjay/ring-discord-auth "0.1.0"]
-                 [bananaoomarang/ring-debug-logging "1.1.0"]]
+                 [bananaoomarang/ring-debug-logging "1.1.0"]
+                 [remus "0.2.1" :exclusions [clj-http]]
+                 [hickory "0.7.1"]]
   :main ^:skip-aot xkcdiscord.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all
+  :profiles {:provided {:dependencies [[clj-http "3.10.2"]]}
+             :uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})

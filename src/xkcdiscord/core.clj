@@ -6,7 +6,7 @@
             [ring-debug-logging.core :refer [wrap-with-logger]]
             [ring.util.response :refer [response bad-request]]
             [org.httpkit.server :as server]
-            [xkcdiscord.command :refer [handle-command]]
+            [xkcdiscord.command :as cmd :refer [handle-command]]
             [clojure.edn :as edn])
   (:gen-class))
 
@@ -21,7 +21,12 @@
 
 (defn -main
   [& args]
+  (println "Reading config...")
   (let [config (edn/read-string (slurp "config/config.edn"))]
+    (println "Reading xkcd archive...")
+    (cmd/populate-archive!)
+    (println "Starting RSS polling...")
+    (cmd/start-rss-updates! (:rss-period config))
     (println "Starting server...")
     (server/run-server
      (-> handler
