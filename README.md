@@ -1,44 +1,28 @@
 # xkcdiscord
 
-FIXME: description
+xkcdiscord is a tiny Discord app that can look up and display xkcd comics.
 
-## Installation
+![](https://i.imgur.com/zTrYe3a.png)
 
-Download from http://example.com/FIXME.
+[**Add it to your server**](https://cobol.is-webscale.club/xkcd/invite)
 
 ## Usage
 
-FIXME: explanation
+Most commands should be sufficiently documented through their description. Quick overview:
 
-    $ java -jar xkcdiscord-0.1.0-standalone.jar [args]
+- `/xkcd show` - show the latest xkcd or a specific xkcd by number
+- `/xkcd rand` - show random xkcd
+- `/xkcd search` - Search for an xkcd by title
 
-## Options
+Setting the `plain` option to true on any command will make the bot only share the comic picture and not embed it with a title, number and date. 
 
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+## Hosting
+TBA
 
 ## License
 
-Copyright © 2021 FIXME
+Copyright © 2021 JohnnyJayJay
 
 This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+terms of the MIT License which is available at
+https://mit-license.org/
