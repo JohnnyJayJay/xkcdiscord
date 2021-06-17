@@ -97,7 +97,7 @@
   (let [{:keys [query]} (command-options command 1)
         results (->> (xkcd/search @archive query)
                      (map (fn [[num title]] (str \` num "` - " \" title \")))
-                     (take 10))]
+                     (take 15))]
     {:type 4
      :data {:embeds [{:title "Search results"
                       :description (if (seq results)
