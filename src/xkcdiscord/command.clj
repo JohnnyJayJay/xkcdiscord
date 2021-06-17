@@ -95,7 +95,6 @@
 (defmethod handle-command ["xkcd" "search"]
   [command]
   (let [{:keys [query]} (command-options command 1)
-        _ (println (count @archive))
         results (->> (xkcd/search @archive query)
                      (map (fn [[num title]] (str \` num "` - " \" title \")))
                      (take 10))]
