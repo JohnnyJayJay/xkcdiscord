@@ -104,3 +104,19 @@
                                      (->> results (string/join "\n") (format "Results for \"%s\":\n\n%s" query))
                                      (str "No results found for \"" query "\" :("))
                       :color (if (seq results) 0x3BA55D 0xED4245)}]}}))
+
+(defmethod handle-command ["xkcd" "info"]
+  [command]
+  {:type 4
+   :data {:content "Hi :wave:\nI'm a Discord app that displays xkcd comics for you :smile:"
+          :components
+          [{:type 1
+            :components
+            [{:type 2
+              :style 5
+              :label "xkcd"
+              :url "https://xkcd.com"}
+             {:type 2
+              :style 5
+              :label "Add me to your server"
+              :url "https://cobol.is-webscale.club/xkcd/invite"}]}]}})

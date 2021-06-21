@@ -1,6 +1,6 @@
-(defproject xkcdiscord "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject xkcdiscord "0.1.0"
+  :description "Discord xkcd bot"
+  :url "https://github.com/JohnnyJayJay/xkcdiscord"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.1"]
@@ -8,7 +8,7 @@
                  [ring/ring-devel "1.9.3"]
                  [ring/ring-json "0.5.1"]
                  [http-kit "2.5.3"]
-                 [com.github.johnnyjayjay/ring-discord-auth "0.1.0"]
+                 [com.github.johnnyjayjay/ring-discord-auth "0.2.0"]
                  [bananaoomarang/ring-debug-logging "1.1.0"]
                  [remus "0.2.1" :exclusions [clj-http]]
                  [hickory "0.7.1"]]
