@@ -8,7 +8,7 @@
                  [ring/ring-devel "1.9.3"]
                  [ring/ring-json "0.5.1"]
                  [http-kit "2.5.3"]
-                 [com.github.johnnyjayjay/ring-discord-auth "0.2.0"]
+                 [com.github.johnnyjayjay/ring-discord-auth "1.0.0"]
                  [bananaoomarang/ring-debug-logging "1.1.0"]
                  [remus "0.2.1"]
                  [hickory "0.7.1"]]
