@@ -64,9 +64,10 @@
     (get-in $ (into [:data :options] (flatten (repeat depth [0 :options]))))
     (zipmap (map (comp keyword :name) $) (map :value $))))
 
-(defn comic->embed [{:keys [year month day num img safe_title]}]
+(defn comic->embed [{:keys [year month day num img safe_title alt]}]
   {:title safe_title
    :url (xkcd/xkcd-url num)
+   :description alt
    :image {:url img}
    :color 0x96A8C8
    :timestamp (apply format "%04d-%02d-%02d" (map #(Integer/parseInt %) [year month day]))
