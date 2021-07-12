@@ -2,7 +2,7 @@
 (ns xkcdiscord.core
   (:require [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [ring.middleware.reload :refer [wrap-reload]]
-            [ring-discord-auth.core :refer [wrap-authenticate]]
+            [ring-discord-auth.ring :refer [wrap-authenticate]]
             [ring-debug-logging.core :refer [wrap-with-logger]]
             [ring.util.response :refer [response bad-request]]
             [org.httpkit.server :as server]
