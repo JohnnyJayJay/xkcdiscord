@@ -4,7 +4,7 @@ xkcdiscord is a tiny Discord app that can look up and display xkcd comics.
 
 ![](https://i.imgur.com/zTrYe3a.png)
 
-[**Add it to your server**](https://cobol.is-webscale.club/xkcd/invite)
+[**Add it to your server**](https://matrix.does-it-better.lol/xkcd/invite)
 
 ## Usage
 
