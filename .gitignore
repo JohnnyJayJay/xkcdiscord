@@ -12,3 +12,5 @@ pom.xml.asc
 .hgignore
 .hg/
 config.edn
+.clj-kondo/.cache
+.lsp/.cache
